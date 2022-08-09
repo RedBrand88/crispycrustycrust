@@ -8,5 +8,5 @@ export default function Home() {
     <div className={styles.container}>
         <Header/>
     </div>
-  )
+  );
 }
