@@ -1,11 +1,13 @@
 import { format } from "date-fns";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {genMonth} from "../../utility/date-generators";
 
 export default function Calendar() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedMonth, setSelectedMonth] = useState(genMonth(selectedDate));
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    //todo figure out how to avoid unnecessary rerenders
 
     return (
         <div className="bg-gray-700 text-white h-screen pt-40">
