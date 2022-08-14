@@ -1,10 +1,15 @@
 import { format } from "date-fns";
-import React, { useState } from "react";
+import React from "react";
 import useSelectedMonth from "../../hooks/useSelectedMonth";
 
 export default function Calendar() {
-    const [selectedDate, setSelectedDate] = useState(new Date());
-    const {selectedMonth, nextSelectedMonth, prevSelectedMonth} = useSelectedMonth();
+    const {
+        selectedMonth,
+        nextSelectedMonth,
+        prevSelectedMonth,
+        selectedDay,
+        setSelectedDate
+    } = useSelectedMonth();
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     //todo figure out how to avoid unnecessary rerenders
@@ -15,18 +20,20 @@ export default function Calendar() {
                 <button onClick={prevSelectedMonth}>prev</button>
                 <button onClick={nextSelectedMonth}>next</button>
                 <div className="h-1/5">
-                    <div className="text-center font-bold text-2xl">{format(selectedDate, 'MMMM')} {format(selectedDate, 'yyyy')}</div>
+                    <div className="text-center font-bold text-2xl">{format(selectedDay, 'MMMM')} {format(selectedDay, 'yyyy')}</div>
                     <div className="flex justify-content">
-                        {weekdays.map(day => {return(
-                            <div key={day} className="w-1/6 text-center border border-white">
-                                {day}
-                            </div>
-                        )})}
+                        {weekdays.map(day => {
+                            return (
+                                <div key={day} className="w-1/6 text-center border border-white">
+                                    {day}
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
                 <div className="grid grid-cols-7 grid-rows-{selectedMonth.length} h-4/5">
                     {selectedMonth.map(week => {
-                        return ( 
+                        return (
                             <>
                                 <div className="border border-white border-r-0" key={week[0]}>
                                     {format(week[0], "d")}
@@ -50,10 +57,10 @@ export default function Calendar() {
                                     {format(week[6], "d")}
                                 </div>
                             </>
-                       )
+                        )
                     })}
+                </div>
             </div>
         </div>
-    </div>
     );
 }

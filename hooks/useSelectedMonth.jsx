@@ -20,9 +20,11 @@ const useSelectedMonth = () => {
     () => ({
         selectedMonth,
         nextSelectedMonth,
-        prevSelectedMonth
+        prevSelectedMonth,
+        selectedDay,
+        setSelectedDay 
     }),
-        [selectedMonth, nextSelectedMonth, prevSelectedMonth]
+        [selectedMonth, nextSelectedMonth, prevSelectedMonth, selectedDay, setSelectedDay]
     );
 
     return values;
