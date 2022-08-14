@@ -1,10 +1,10 @@
 import { format } from "date-fns";
-import React, { useEffect, useState } from "react";
-import {genMonth} from "../../utility/date-generators";
+import React, { useState } from "react";
+import useSelectedMonth from "../../hooks/useSelectedMonth";
 
 export default function Calendar() {
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const [selectedMonth, setSelectedMonth] = useState(genMonth(selectedDate));
+    const {selectedMonth, nextSelectedMonth, prevSelectedMonth} = useSelectedMonth();
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     //todo figure out how to avoid unnecessary rerenders
@@ -12,6 +12,8 @@ export default function Calendar() {
     return (
         <div className="bg-gray-700 text-white h-screen pt-40">
             <div className="bg-black mx-40 rounded h-4/5">
+                <button onClick={prevSelectedMonth}>prev</button>
+                <button onClick={nextSelectedMonth}>next</button>
                 <div className="h-1/5">
                     <div className="text-center font-bold text-2xl">{format(selectedDate, 'MMMM')} {format(selectedDate, 'yyyy')}</div>
                     <div className="flex justify-content">
