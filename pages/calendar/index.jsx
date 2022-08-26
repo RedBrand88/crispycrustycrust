@@ -11,17 +11,23 @@ export default function Calendar() {
         setSelectedDate
     } = useSelectedMonth();
     const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    // refactor: pull out smaller components into their own file
 
-    //todo figure out how to avoid unnecessary rerenders
+    const dayOnClick = (event) => {
+        // launch modal to create scheduled bread
+        console.log(event.target);
+    };
 
     return (
         <div className="bg-gray-700 text-white h-screen pt-40">
             <div className="bg-black mx-40 rounded h-4/5">
-                <button onClick={prevSelectedMonth}>prev</button>
-                <button onClick={nextSelectedMonth}>next</button>
-                <div className="h-1/5">
+                <div>
+                    <div className="flex justify-between">
+                        <button className="pl-2" onClick={prevSelectedMonth}>prev</button>
+                        <button className="pr-2" onClick={nextSelectedMonth}>next</button>
+                    </div>
                     <div className="text-center font-bold text-2xl">{format(selectedDay, 'MMMM')} {format(selectedDay, 'yyyy')}</div>
-                    <div className="flex justify-content">
+                    <div className="flex items-end h-4/6">
                         {weekdays.map(day => {
                             return (
                                 <div key={day} className="w-1/6 text-center border border-white">
@@ -35,26 +41,40 @@ export default function Calendar() {
                     {selectedMonth.map(week => {
                         return (
                             <>
-                                <div className="border border-white border-r-0" key={week[0]}>
-                                    {format(week[0], "d")}
+                                <div onClick={dayOnClick} className="border border-white border-r-0" key={week[0]}>
+                                    <div className="ml-2 mt-2">
+                                        {format(week[0], "d")}
+                                    </div>
                                 </div>
-                                <div className="border border-white border-r-0" key={week[1]}>
-                                    {format(week[1], "d")}
+                                <div onClick={dayOnClick} className="border border-white border-r-0" key={week[1]}>
+                                    <div className="ml-2 mt-2">
+                                        {format(week[1], "d")}
+                                    </div>
                                 </div>
-                                <div className="border border-white border-r-0" key={week[2]}>
-                                    {format(week[2], "d")}
+                                <div onClick={dayOnClick} className="border border-white border-r-0" key={week[2]}>
+                                    <div className="ml-2 mt-2">
+                                        {format(week[2], "d")}
+                                    </div>
                                 </div>
-                                <div className="border border-white border-r-0" key={week[3]}>
-                                    {format(week[3], "d")}
+                                <div onClick={dayOnClick} className="border border-white border-r-0" key={week[3]}>
+                                    <div className="ml-2 mt-2">
+                                        {format(week[3], "d")}
+                                    </div>
                                 </div>
-                                <div className="border border-white border-r-0" key={week[4]}>
-                                    {format(week[4], "d")}
+                                <div onClick={dayOnClick} className="border border-white border-r-0" key={week[4]}>
+                                    <div className="ml-2 mt-2">
+                                        {format(week[4], "d")}
+                                    </div>
                                 </div>
-                                <div className="border border-white border-r-0" key={week[5]}>
-                                    {format(week[5], "d")}
+                                <div onClick={dayOnClick} className="border border-white border-r-0" key={week[5]}>
+                                    <div className="ml-2 mt-2">
+                                        {format(week[5], "d")}
+                                    </div>
                                 </div>
-                                <div className="border border-white" key={week[6]}>
-                                    {format(week[6], "d")}
+                                <div onClick={dayOnClick} className="border border-white" key={week[6]}>
+                                    <div className="ml-2 mt-2">
+                                        {format(week[6], "d")}
+                                    </div>
                                 </div>
                             </>
                         )
